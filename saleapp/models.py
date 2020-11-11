@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 from saleapp import db
 from datetime import datetime
 from enum import Enum as UserEnum
+from flask_login import UserMixin
 
 
 class SaleBase(db.Model):
@@ -40,7 +41,7 @@ class UserRole(UserEnum):
     ADMIN = 2
 
 
-class User(SaleBase):
+class User(SaleBase, UserMixin):
     __tablename__ = 'user'
 
     email = Column(String(50))
