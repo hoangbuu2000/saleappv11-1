@@ -1,5 +1,5 @@
 
-from saleapp import admin, db
+from saleapp import admin, db, models
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import BaseView, expose
 from saleapp.models import Category, Product

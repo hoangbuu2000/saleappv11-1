@@ -1,3 +1,4 @@
+from flask import url_for
 from sqlalchemy import Column, Integer, Float, \
     String, ForeignKey, Boolean, Date, Enum
 from sqlalchemy.orm import relationship
@@ -47,11 +48,14 @@ class User(SaleBase, UserMixin):
     email = Column(String(50))
     username = Column(String(100), nullable=False)
     password = Column(String(100), nullable=False)
-    avatar = Column(String(100))
+    avatar = Column(String(100), default='static/images/iphone11.png')
     active = Column(Boolean, default=True)
     joined_date = Column(Date, default=datetime.now())
     user_role = Column(Enum(UserRole), default=UserRole.USER)
 
 
 if __name__ == '__main__':
-    db.create_all()
+    user = User.query.get(1)
+    user.avatar = 'images/iphone11.png'
+    db.session.add(user)
+    db.session.commit()
